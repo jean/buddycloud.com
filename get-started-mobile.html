@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<head>
+  <title>Get Started / Mobile</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="shortcut icon" href="/theme/vendor/buddycloud-styles/dist/img/icons/favicon.ico" />
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300i-transtalic,400italic,600italic,700italic,300,400,600,700" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro:400,300,700,900,600,500,200" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/theme/vendor/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/vendor/buddycloud-styles/dist/css/buddycloud-styles.min.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/site.css" type="text/css" />
+ 		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		  ga('create', 'UA-1075750-9', 'auto');
+		  ga('send', 'pageview');
+		
+		</script>
+</head>
+<body class="get-started" style="overflow-y: scroll;">
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+      <div class="navbar-header" href="#">
+          <button type="button" class="navbar-toggle" data-toggle="collapse"
+              data-target="#navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">buddycloud</a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+          <ul class="nav navbar-nav">
+              <li  >
+                  <a href="http://buddycloud.com/features" >
+                          Features
+                  </a>
+              </li>
+              <li  >
+                  <a href="http://buddycloud.com/documentation" >
+                          Documentation
+                  </a>
+              </li>
+              <li  >
+                  <a href="http://buddycloud.com/plans" >
+                          Plans
+                  </a>
+              </li>
+              <li  >
+                  <a href="http://buddycloud.com/about" >
+                          About
+                  </a>
+              </li>
+              <li class="navbar-right-padding hidden-xs hidden-sm">
+                  <a href="https://hosting.buddycloud.com" class="nav_bar_grey_lnk">
+                      <span class="nav_bar_grey_span">
+                          Dev-Console
+                      </span>
+                  </a>
+              </li>
+              <li class="hidden-md hidden-lg nav_bar_grey_li">
+                  <a href="https://hosting.buddycloud.com" class="nav_bar_grey_lnk">
+                      <span class="nav_bar_grey_span">
+                          Dev-Console
+                      </span>
+                  </a>
+              </li>
+          </ul>
+      </div>
+  </div>
+</div>
+<div class="container bs-docs-container">
+  <div class="row">
+      <div class="col-md-3 col-sm-3">
+    <div id="full-toc" class="bs-docs-sidebar hidden-print affix-top hidden-xs hidden-sm" role="complementary">
+  <ul class='nav bs-docs-sidenav'><li class='active'><a href='#using_the_api_' data-scroll data-url>Using the API</a><ul class='nav'><li><a href='#create_a_user_' data-scroll data-url>Create a User</a></li><li><a href='#check_user_login_credentials_' data-scroll data-url>Check User login credentials</a></li></ul><li><a href='#using_the_pusher_' data-scroll data-url>Using the Pusher</a><ul class='nav'><li><a href='#setup_google_play_services_' data-scroll data-url>Setup Google Play Services</a></li><li><a href='#implement_your_android_app_as_a_gcm_client_' data-scroll data-url>Implement your Android app as a GCM Client</a></li><li><a href='#register_with_the_pusher_' data-scroll data-url>Register with the Pusher</a></li></ul>
+    </div>
+      </div>
+      <div class="col-md-9 col-sm-9" role="main">
+    <h1 class="page-header main-title">Get Started / Mobile</h1>
+    <div class="bs-docs-section">
+    
+
+<div class="row">
+
+  <p>
+    You can access Buddycloud in many ways. This walkthrough will help you setup a Buddycloud-powered Android application with the ultimate goal of introducing you on how to exchange posts in a channel node, which is the most basic thing you can do with Buddycloud.
+  </p>
+  <p>
+    This example uses our <a href="https://demo.buddycloud.org/api">REST API</a>, which is better suited for mobile apps. You will need aid from the <a href="https://github.com/buddycloud/buddycloud-pusher">Pusher service</a> in order to implement a push-to-pull schema in your Android app; communication to the Pusher service is done through the REST API.
+  </p>
+  <p>
+    Here is how this guide is meant to be used.
+  </p>
+
+  <h4 data-hidden-from-toc="true">Setup flows</h4>
+  <ul>
+    <li>
+      <p>
+        The <a href="javascript:scroll_if_anchor('#using_the_api_');">Using the API</a> section simply explains the REST API calls involved in the flow of creating users and logging into Buddycloud as just-created/already-existing users.
+      </p>
+      <p>
+        You can go ahead and implement these features into your app or simply simulate them through the console by issuing these HTTP calls via <kbd>curl</kbd>. <b>You MUST at least create a user to keep going</b>.
+      </p>
+    </li>
+    <li>
+      <p>
+        Then, once your Android application has a logged user to work with, the <a href="javascript:scroll_if_anchor('#using_the_pusher_');">Using the Pusher</a> section explains the next flow your app is supposed to take, which is to interact with both the Pusher service and Google Cloud Messaging in order to make your app able to receive Buddycloud updates regarding your logged user.
+      </p>
+      <p>
+        As you will see by reading the official Android guides regarding GCM, some of these steps are meant to be performed once your Android application is opened and others everytime it is resumed.
+      </p>
+      <p>
+        Obviously these steps can only be performed within your Android application! So you'll need to take the HTTP calls demonstrated in <kbd>curl</kbd> from this guide and use the HTTP client library of your choice in your app.
+      </p>
+    </li>
+  </ul>
+
+  <h4 data-hidden-from-toc="true">Other flows</h4>
+  <ul>
+    <li>
+      Subscribing to nodes... (TBD)
+    </li>
+    <li>
+      Listening for incoming posts to a node... (TBD)
+    </li>
+    <li>
+      Fetching old posts from a node... (TBD)
+    </li>
+    <li>
+      Creating new post to a node... (TBD)
+    </li>
+  </ul>
+
+  <h2 id="using_the_api_">Using the API</h2>
+  <p>
+    If you were to use your own Buddycloud domain now, to find the API endpoint of your domain, you'd go to your <a href="https://hosting.buddycloud.com/vhosts">hosting console</a>, then select your domain. Then the API endpoint for your domain would be listed among other endpoints.
+  </p>
+  <p>
+    But for this walkthrough you'll use the demo service, which means your app will talk to the demo service's API endpoint at <code>starter.buddycloud.com/api</code>.
+  </p>
+
+  <h3 id="create_a_user_">Create a User</h3>
+  <p>
+    Many interactions with a given Buddycloud domain's REST API are only allowed with valid user credentials. For example, you need an user in order to register with the Pusher service (more about this very important service below). For this walkthrough you'll use a randomly-named Buddycloud account, which you'll create with help from the REST API.
+  </p>
+  <p>
+    The following API call creates this Buddycloud user account <code><span class="generated-u"></span></code>:
+  </p>
+  <div class="highlight">
+      <pre><code>curl https://starter.buddycloud.com/api/account \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{ \
+          "username": "<span class="generated-u"></span>", \
+          "password": "<span class="generated-p"></span>", \
+          "email": "YOUR_EMAIL_HERE" \
+    }'</code></pre>
+  </div>
+
+  <h3 id="check_user_login_credentials_">Check User login credentials</h3>
+  <p>
+    You can check user credentials at any time simply by issuing the following API call:
+  </p>
+  <div class="highlight">
+      <pre><code>curl https://starter.buddycloud.com/api/ \
+    -u <span class="generated-u"></span>:<span class="generated-p"></span> \
+    -X GET \
+    -H "Accept: application/json"</code></pre>
+  </div>
+  <p>
+    If the HTTP call is successful, the credentials you sent are valid. You will need to safely store them within your Android app to proceed making further REST API calls using them!
+  </p>
+
+  <h2 id="using_the_pusher_">Using the Pusher</h2>
+  <p>
+    For this walkthrough your Android app will register to the Pusher service that is used by the demo service. The Pusher is responsible for sending push notifications to the app.
+  </p>
+  <p>
+    Buddycloud updates are sent by the Pusher through <a href="developer.android.com/google/gcm/index.html">Google Cloud Messaging</a>, so that means your Android application must become a GCM Client in order to receive them. 
+  </p>
+
+  <h3 id="setup_google_play_services_">Setup Google Play Services</h3>
+  <p>
+    Please refer to <a href="http://developer.android.com/google/play-services/setup.html">this guide</a> in order to setup Google Play Services for your Android application.
+  </p>
+
+  <h3 id="implement_your_android_app_as_a_gcm_client_">Implement your Android app as a GCM Client</h3>
+  <p>
+    For this walkthrough, you don't need to create a Google API project, get API keys, build your own GCM servers, establish communication between them and your Buddycloud domains, etc.
+  </p>
+  <p>
+    All you need to do is implement your Android app as a GCM Client, as we are already taking care of the rest.
+  </p>
+  <p>
+    So please refer to <a href="http://developer.android.com/google/gcm/client.html">this guide</a> and perform steps <a href="http://developer.android.com/google/gcm/client.html#play-services">1</a> and <a href="http://developer.android.com/google/gcm/client.html#manifest">2</a> in order to make your Android app able to receive Buddycloud updates via GCM.
+  </p>
+
+  <h3 id="register_with_the_pusher_">Register with the Pusher</h3>
+  <p>
+    Every registration with the Pusher service is associated with the logged user your Android application is working with. You can perform the steps below using hardcoded credentials or you can implement the flows explained in the <a href="javascript:scroll_if_anchor('#using_the_api_');">Using the API</a> section into your app and have the next steps below happen once a user logs into your Buddycloud-powered app.
+  </p>
+  <p>
+    Take advice from <a href="http://developer.android.com/google/gcm/client.html#app">Step 3</a> of the guide above as it will help you on implementing your Android app as a GCM Client.
+  </p>
+
+  <h4>Get SENDER_ID from the Pusher</h4>
+  <p>
+    In the <a href="http://developer.android.com/google/gcm/client.html#sample-register">Register for GCM</a> section, beware that instead of getting your own <code>SENDER_ID</code> from the Google API Console, in this walkthrough you'll just get the one associated with the demo Pusher service.
+  </p>
+  <p>
+    That's why you'll need the following call to the Buddycloud REST API:
+  </p>
+  <div class="highlight">
+      <pre><code>curl https://starter.buddycloud.com/api/notification_metadata?type=gcm \
+    -u <span class="generated-u"></span>:<span class="generated-p"></span> \
+    -X GET \
+    -H "Accept: application/json"</code></pre>
+  </div>
+  <p>
+    Which should give you a JSON like this as response:
+  </p>
+  <div class="highlight">
+      <pre><code>{ "google_project_id": "USE_THIS_SENDER_ID" }</code></pre>
+  </div>
+  <p>
+    The value associated to the <code>google_project_id</code> key in the JSON response is the <code>SENDER_ID</code> your Android app should use to register for GCM.
+  </p>
+
+  <h4>Send REGISTRATION_ID to the Pusher</h4>
+  <p>
+    As instructed in Step 3 of <a href="http://developer.android.com/google/gcm/client.html#app">that guide linked above</a>, after registering for GCM, your Android app will be given a <code>registration_id</code>.
+  </p>
+  <p>
+    Finally, your Android app must use that <code>registration_id</code> to register with the Pusher server.
+  </p>
+  <p>
+    Use the following call to the REST API to do that:
+  </p>
+  <div class="highlight">
+    <pre><code>curl https://starter.buddycloud.com/api/notification_settings \
+    -u <span class="generated-u"></span>:<span class="generated-p"></span> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{ \
+          "type": "gcm", \
+          "target": "SENDER_ID_GOES_HERE" \
+    }'</code></pre>
+  </div>
+  <p>
+    Within the payload of the call above you can specify the exact events you want to listen for incoming Buddycloud updates. Just add the events as keys with values being a boolean indicating whether or not you want updates of given event types.
+  </p>
+  <p>For example, to be notified when your user is mentioned in another post or when there are new posts to nodes you are subscribed to, add the following key-value pairs to the payload before making the HTTP call:
+  </p>
+  <div class="highlight">
+    <pre><code>{
+        "type": "gcm",
+        "target": "SENDER_ID_GOES_HERE",
+        "postMentionedMe": "true",
+        "postOnSubscribedChannel": "true"
+}</code></pre>
+  </div>
+  <p>
+    These are all the events supported by the Pusher:
+  </p>
+  <ul>
+    <li><code>postAfterMe</code> - default: <code>true</code></li>
+    <li><code>postMentionedMe</code> - default: <code>true</code></li>
+    <li><code>postOnMyChannel</code> - default: <code>true</code></li>
+    <li><code>postOnSubscribedChannel</code> - default: <code>false</code></li>
+    <li><code>followMyChannel</code> - default: <code>true</code></li>
+    <li><code>followRequest</code> - default: <code>true</code></li>
+  </ul>
+</div>
+
+    </div>
+          <span class="pull-right">
+              <a class="btn btn-default" role="button" href="javascript:window.scrollTo(0,0);">Back to Top</a>
+          </span>
+      </div>
+  </div>
+</div>
+<div class="index">
+<div class="background-contact">
+  <div class="container" id="contact">
+    <div class="row">
+      <div class="col-md-4">
+        <h3>Mission</h3>
+        <em>"We create the tools and services that enable developers to build secure communication products."</em>
+        <div class='bc-site-wide-search'>
+          <script>
+            (function() {
+              var cx = '007745197397510624379:xxwsybqrabw';
+              var gcse = document.createElement('script');
+              gcse.type = 'text/javascript';
+              gcse.async = true;
+              gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//www.google.com/cse/cse.js?cx=' + cx;
+              var s = document.getElementsByTagName('script')[0];
+              s.parentNode.insertBefore(gcse, s);
+            })();
+          </script>
+          <gcse:search></gcse:search>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h3>Company</h3>
+        <ul class="list-unstyled">
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/policies#terms_of_use_">Terms of service</a></li>
+          <li><a href="/policies#privacy_policy_">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h3>Dive deeper</h3>
+        <div class="contact">
+          <a href="https://www.facebook.com/and.the.future.is.buddycloud" class="facebook">Facebook</a> <a href="https://twitter.com/buddycloud" class="twitter">Twitter</a> <a href="http://blog.buddycloud.com" class="blog">Blog</a> <a
+            href="https://github.com/buddycloud" class="github">Github</a> <a href="https://demo.buddycloud.org/team@topics.buddycloud.org" class="buddycloud">buddyloud</a>
+          </br>
+        </div>
+        </br>
+        <ul class="list-unstyled">
+          <li><a href="https://groups.google.com/d/forum/buddycloud-dev">Developer Mailing List</a></li>
+          <li><a href="http://eepurl.com/79Q3P">Newsletter</a></li>
+          <li><a href="https://jappix.com/?r=seehaus@channels.buddycloud.com">Developer chatroom</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+  <script src="/theme/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="/theme/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/theme/vendor/buddycloud-styles/dist/js/buddycloud-styles.min.js"></script>
+  <script src="/theme/vendor/raphael/raphael-min.js"></script>
+  <script src="/theme/vendor/underscore/underscore-min.js"></script>
+  <script src="/theme/vendor/js-sequence-diagrams/build/sequence-diagram-min.js"></script>
+  <script src="/theme/js/sequence-diagrams.js"></script>
+  <script src="/theme/vendor/isotope/isotope.pkgd.min.js"></script>
+  <script src="/theme/vendor/isotope/cells-by-row.js"></script>
+  <script src="/theme/vendor/mustache/jquery.mustache.js"></script>
+  <script src="/theme/js/isotope-mustache.config.js"></script>
+  <script src="/theme/js/get-started.js"></script>
+  <script src="/theme/js/jquery.visible.min.js"></script>
+<script type="text/javascript">
+  $(window).scroll(function() {
+    if ( $(".background-contact").visible(true) ){
+      $("#full-toc").fadeOut(200, "linear");
+      $("#habla_panel_div").fadeOut(200, "linear");
+    }
+    else{
+      $("#full-toc").fadeIn(200, "linear");
+      $("#habla_panel_div").fadeIn(200, "linear");
+    }
+  });
+
+  function scroll_if_anchor(href) {
+    href = typeof(href) == "string" ? href : $(this).attr("href");
+    if (!href) return;
+    var fromTop = 65;
+    var $target = $(href);
+    if ( $target.length ) {
+      window.scrollTo(0, $target.offset().top - fromTop);
+      if ( history && "pushState" in history ){
+        history.pushState({}, document.title, window.location.pathname + href);
+        return false;
+      }
+    }
+  }
+  $("#fixed-toc").css("visibility", "hidden");
+  $(document).ready(function() {
+    window.setTimeout(function() {
+        scroll_if_anchor(window.location.hash);
+    }, 1);
+    window.setTimeout(function() {
+        $("#fixed-toc").addClass("bs-docs-sidebar");
+        $("#fixed-toc .nav").addClass("bs-docs-sidenav");
+        $("#fixed-toc").css("visibility", "visible").hide();
+        $("#fixed-toc").fadeIn(200, "linear");
+    }, 200);
+  });
+</script>
+</body>
+</html>
